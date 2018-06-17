@@ -24,11 +24,14 @@ class ViewController: UIViewController
     {
         super.viewDidLoad()
         
+       
+        
         longGesture = UILongPressGestureRecognizer(target: self, action: #selector(ViewController.triggeredAction(_:)))
         
         //longGesture.allowableMovement = 99999999
         
         viewToPress.addGestureRecognizer(longGesture)
+    
         
     }
     
@@ -52,6 +55,7 @@ class ViewController: UIViewController
             
             timer.invalidate()
             intCounter=0;
+            progressBar.progress = 0
         }
         
         
@@ -71,7 +75,7 @@ class ViewController: UIViewController
     func runTimer()
     {
         timer.invalidate()
-        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateCountdown), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateCountup), userInfo: nil, repeats: true)
     }
     
     
@@ -80,13 +84,16 @@ class ViewController: UIViewController
        runTimer()
     }
     
-    @objc func updateCountdown()
+    @objc func updateCountup()
     {
-        intCounter += 0.1
+        intCounter += 0.005
+        self.progressBar.progress = Float(self.intCounter)
         
+//        UIView.animate(withDuration: 3)
+//        {
+//            self.progressBar.progress = Float(self.intCounter)
+//        }
         
-        
-        //Set counter in UILabel
         print(intCounter)
         
         if intCounter <= 0
