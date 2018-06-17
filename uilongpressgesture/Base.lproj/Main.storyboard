@@ -20,21 +20,31 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZDp-tk-iBT">
                                 <rect key="frame" x="97.5" y="253.5" width="180" height="180"/>
-                                <color key="backgroundColor" red="0.32369780539999998" green="0.1063579395" blue="0.574860394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="fhB-du-ZMw"/>
                                     <constraint firstAttribute="width" constant="180" id="iEf-rB-1QN"/>
                                 </constraints>
                             </view>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IRo-CM-zdk">
+                                <rect key="frame" x="62.5" y="526" width="250" height="8"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="8" id="KDy-OT-gxl"/>
+                                    <constraint firstAttribute="width" constant="250" id="jGr-YB-b3u"/>
+                                </constraints>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ZDp-tk-iBT" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="52p-Bc-2vp"/>
+                            <constraint firstItem="IRo-CM-zdk" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="7Nn-4R-ctr"/>
                             <constraint firstItem="ZDp-tk-iBT" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="d8d-sx-3ye"/>
+                            <constraint firstItem="IRo-CM-zdk" firstAttribute="top" secondItem="ZDp-tk-iBT" secondAttribute="bottom" constant="92.5" id="diy-Dv-SL1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="progressBar" destination="IRo-CM-zdk" id="nzs-4k-ypE"/>
                         <outlet property="viewToPress" destination="ZDp-tk-iBT" id="Ilv-ry-tyR"/>
                     </connections>
                 </viewController>
