@@ -6,11 +6,18 @@
 //  Copyright © 2018 AVP. All rights reserved.
 //
 
+
 import UIKit
+import AVFoundation
+import Foundation
+
 
 class ViewController: UIViewController
 {
-    @IBOutlet var viewToPress: UIView!
+ 
+    @IBOutlet var viewToPress: KDCircularProgress!
+    
+    
     @IBOutlet var progressBar: UIProgressView!
     
     var longGesture = UILongPressGestureRecognizer()
@@ -23,14 +30,12 @@ class ViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-       
+
         
         longGesture = UILongPressGestureRecognizer(target: self, action: #selector(ViewController.triggeredAction(_:)))
-        
-        //longGesture.allowableMovement = 99999999
-        
+
         viewToPress.addGestureRecognizer(longGesture)
+        
     
         
     }
@@ -56,6 +61,7 @@ class ViewController: UIViewController
             timer.invalidate()
             intCounter=0;
             progressBar.progress = 0
+            viewToPress.angle = 0
         }
         
         
@@ -75,6 +81,7 @@ class ViewController: UIViewController
     func runTimer()
     {
         timer.invalidate()
+       
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateCountup), userInfo: nil, repeats: true)
     }
     
@@ -89,16 +96,16 @@ class ViewController: UIViewController
         intCounter += 0.005
         self.progressBar.progress = Float(self.intCounter)
         
-//        UIView.animate(withDuration: 3)
-//        {
-//            self.progressBar.progress = Float(self.intCounter)
-//        }
+        self.viewToPress.angle += 1.8
+       
         
         print(intCounter)
         
-        if intCounter <= 0
+        if intCounter >= 1
         {
             timer.invalidate()
+            self.progressBar.progress = 0
+            intCounter = 0
 
         }
     }
