@@ -11,6 +11,7 @@ import UIKit
 import AVFoundation
 import Foundation
 
+var feedbackPlayer: AVAudioPlayer?
 
 class ViewController: UIViewController
 {
@@ -36,12 +37,32 @@ class ViewController: UIViewController
 
         viewToPress.addGestureRecognizer(longGesture)
         
-    
+        
         
     }
     
  
     
+    func playFeedbackSound()
+    {
+        guard let url = Bundle.main.url(forResource: "space", withExtension: "mp3")
+            else {return}
+          do
+            {
+              try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+              try AVAudioSession.sharedInstance().setActive(true)
+                
+              feedbackPlayer = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+              
+                guard let player = feedbackPlayer else {return}
+                
+              feedbackPlayer?.play()
+            }
+          catch let error
+           {
+             print(error.localizedDescription)
+           }
+    }
     
     @objc func triggeredAction(_ sender: UILongPressGestureRecognizer)
     {
@@ -52,6 +73,8 @@ class ViewController: UIViewController
             viewToPress.backgroundColor = UIColor.green
             
             runTimer()
+            
+            playFeedbackSound()
         }
         else if sender.state == UIGestureRecognizerState.ended
         {
@@ -62,6 +85,8 @@ class ViewController: UIViewController
             intCounter=0;
             progressBar.progress = 0
             viewToPress.angle = 0
+            
+            feedbackPlayer?.stop()
         }
         
         
