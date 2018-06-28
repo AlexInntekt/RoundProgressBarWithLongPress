@@ -10,6 +10,7 @@
 import UIKit
 import AVFoundation
 import Foundation
+import AudioToolbox
 
 var feedbackPlayer: AVAudioPlayer?
 
@@ -62,6 +63,9 @@ class ViewController: UIViewController
            {
              print(error.localizedDescription)
            }
+        
+        //vibrate:
+        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
     }
     
     @objc func triggeredAction(_ sender: UILongPressGestureRecognizer)
