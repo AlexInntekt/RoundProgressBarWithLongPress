@@ -85,12 +85,17 @@ class ViewController: UIViewController
             print("ended")
             viewToPress.backgroundColor = UIColor.red
             
+            //if the touch stops right during the filling of the circular bar, then stop the sound feedback:
+            if (progressBar.progress<1) && (progressBar.progress != 0)
+            {
+                feedbackPlayer?.stop()
+            }
+            
             timer.invalidate()
             intCounter=0;
             progressBar.progress = 0
             viewToPress.angle = 0
             
-            feedbackPlayer?.stop()
         }
         
         
